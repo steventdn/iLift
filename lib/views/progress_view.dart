@@ -18,6 +18,7 @@ class ProgressPage extends StatefulWidget {
 
 class _ProgressPageState extends State<ProgressPage> {
 
+  //User information
   User? user = FirebaseAuth.instance.currentUser;
   UserModel loggedInUser = UserModel();
 
@@ -36,13 +37,6 @@ class _ProgressPageState extends State<ProgressPage> {
     });
   }
 
-  int currentIndex = 0;
-  final screens = [
-    HomeView(),
-    WorkoutPage(),
-    ProgressPage(),
-  ];
-
   var workoutList = [];
   @override
   Widget build(BuildContext context) {
@@ -53,6 +47,8 @@ class _ProgressPageState extends State<ProgressPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+
+              //Show Progress saved from Cloud Firestore
               ElevatedButton(
                   onPressed: () async {
                     workoutList = [];
@@ -78,6 +74,8 @@ class _ProgressPageState extends State<ProgressPage> {
                     // clearText();
                   }, child: Text("View Progress")
               ),
+
+              //Print
               Expanded(
                 child: ListView.builder(
                     padding: const EdgeInsets.all(8),
@@ -98,12 +96,4 @@ class _ProgressPageState extends State<ProgressPage> {
       ),
     );
   }
-
-
-  Future<void> logout(BuildContext context) async
-  {
-    await FirebaseAuth.instance.signOut();
-    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => LoginScreenPage()));
-  }
-
 }

@@ -40,14 +40,19 @@ class _HomeViewState extends State<HomeView> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+
+            //Home Logo
             CircleAvatar(
               radius: 120,
               backgroundColor: Colors.black26,
               child: Image.asset("assets/redloho.png", fit: BoxFit.contain),
               ),
+
             SizedBox(height:10),
             Text("Welcome", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
+
+            //User Information
             Text("${loggedInUser.firstName} ${loggedInUser.secondName}",
               style: TextStyle(
                   color: Colors.black54,
@@ -60,6 +65,7 @@ class _HomeViewState extends State<HomeView> {
                   fontWeight: FontWeight.w500),
             ),
             SizedBox(height: 15,),
+            //Log Out button
             ActionChip(label: Text("Log out"), onPressed: () {
               logout(context);
             }
@@ -71,6 +77,7 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
+  //Log out function
   Future<void> logout(BuildContext context) async
   {
     await FirebaseAuth.instance.signOut();

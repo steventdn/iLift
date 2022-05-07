@@ -6,10 +6,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:progressive_overload2/models/user_model.dart';
 import 'package:intl/intl.dart';
 
-
-
-import '../models/exercise_model.dart';
-
 class WorkoutPage extends StatefulWidget {
   const WorkoutPage({Key? key}) : super(key: key);
 
@@ -37,8 +33,8 @@ class _WorkoutPageState extends State<WorkoutPage> {
 
   }
   String time = '?';
-  var workoutList = [];
-  var splitList = [];
+
+  //Get user uid
   User? user = FirebaseAuth.instance.currentUser;
   UserModel loggedInUser = UserModel();
 
@@ -57,10 +53,12 @@ class _WorkoutPageState extends State<WorkoutPage> {
     });
   }
 
+  //First field error prevention
   bool _isReadonly = false;
   bool _isDisabled = false;
   int start = 0;
-  var category;
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -75,6 +73,8 @@ class _WorkoutPageState extends State<WorkoutPage> {
               mainAxisAlignment: MainAxisAlignment.center,
 
               children: <Widget>[
+
+                //First Field
                 TextField(
                   controller: splitController,
                   readOnly: _isReadonly,
@@ -89,9 +89,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
                   ),
                 ),
 
-                //Save Split Name
-
-
+              //Save Split name (Start Button)
               ElevatedButton(
                     onPressed: _isDisabled ? null : () async {
                       if(splitController.text == ''){
@@ -124,7 +122,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
                   ),
 
 
-
+                //Exercise Field
                 SizedBox(
                   height: 65,
                   child: TextField(
@@ -140,6 +138,8 @@ class _WorkoutPageState extends State<WorkoutPage> {
                   ),
                   ),
                 ),
+
+                //Weight field
                 SizedBox(
                   height: 65,
                   child: TextField(
@@ -156,6 +156,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
                   ),
                 ),
 
+                //Sets field
                 SizedBox(
                   height: 65,
                   child: TextField(
@@ -171,6 +172,8 @@ class _WorkoutPageState extends State<WorkoutPage> {
                   ),
                   ),
                 ),
+
+                //Reps field
                 SizedBox(
                   height: 65,
                   child: TextField(
@@ -187,7 +190,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
                   ),
                 ),
 
-                //Save workout
+                //Save workout (button)
                 ElevatedButton(
                   onPressed: () async {
                     if(start == 0)
