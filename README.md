@@ -4,7 +4,7 @@ mobiledev
 
 ## Getting Started
 
-This app is for CS4750
+This app is for CS4750, testing 123
 
 A few resources to get you started if this is your first Flutter project:
 
