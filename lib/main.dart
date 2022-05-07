@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:progressive_overload2/Screens/login_page.dart';
 import 'package:progressive_overload2/Screens/register_page.dart';
 import 'package:progressive_overload2/home_widget.dart';
-import 'package:progressive_overload2/views/logged_in_view.dart';
+import 'package:progressive_overload2/views/home_view.dart';
 import 'package:progressive_overload2/views/workout_view.dart';
 
 

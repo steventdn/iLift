@@ -3,11 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:progressive_overload2/Screens/login_page.dart';
-import 'package:progressive_overload2/home_widget.dart';
 import 'package:progressive_overload2/models/user_model.dart';
-import 'package:progressive_overload2/views/addsplit_view.dart';
-import 'package:progressive_overload2/views/progress_view.dart';
+import 'package:intl/intl.dart';
+
 
 
 import '../models/exercise_model.dart';
@@ -38,6 +36,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
     repsController.clear();
 
   }
+  String time = '?';
   var workoutList = [];
   var splitList = [];
   User? user = FirebaseAuth.instance.currentUser;
@@ -58,8 +57,9 @@ class _WorkoutPageState extends State<WorkoutPage> {
     });
   }
 
-
+  bool _isReadonly = false;
   bool _isDisabled = false;
+  int start = 0;
   var category;
   @override
   Widget build(BuildContext context) {
@@ -77,7 +77,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
               children: <Widget>[
                 TextField(
                   controller: splitController,
-
+                  readOnly: _isReadonly,
                   obscureText: false,
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.face),
@@ -96,7 +96,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
                     onPressed: _isDisabled ? null : () async {
                       if(splitController.text == ''){
                         Fluttertoast.showToast(msg: "Fill out first field!",
-                            gravity: ToastGravity.BOTTOM);
+                            gravity: ToastGravity.CENTER);
                         return null;
                       } else {
                         // Put your code here, which you want to execute when Text Field is NOT Empty.
@@ -106,19 +106,23 @@ class _WorkoutPageState extends State<WorkoutPage> {
                       //
                       // splitModel.name = splitController.text;
                       // var list = [splitController.text];
-
+                      start++;
+                      final now = DateTime.now();
+                      time = DateFormat('MM-dd-yyyy').format(now);
                       //Creating the array here
                       var arrayRef = FirebaseFirestore.instance.collection("users")
                           .doc(user?.uid).collection("exercises").doc().set(
                           {
-                            "exercise" : splitController.text,
-                            "timestamp": FieldValue.serverTimestamp()
+                            "exercise" : splitController.text + " (" + time + ")",
+                            "timestamp": FieldValue.serverTimestamp(),
                           }
                       );
                       setState(() {
                         _isDisabled = true;
+                        _isReadonly = true;
                       });
-                      Fluttertoast.showToast(msg: "You can now enter your exercises!");
+                      Fluttertoast.showToast(msg: "You can now enter your exercises! (Minimum : 1)",
+                      gravity: ToastGravity.CENTER);
                     }, child: Text("Start"),
                   ),
 
@@ -204,13 +208,32 @@ class _WorkoutPageState extends State<WorkoutPage> {
                 //Save workout
                 ElevatedButton(
                   onPressed: () async {
+                    if(start == 0)
+                      {
+                        Fluttertoast.showToast(msg: "Press the start button first!",
+                            gravity: ToastGravity.CENTER);
+                        return null;
+                      } else {
+                      // Put your code here, which you want to execute when Text Field is NOT Empty.
+                      print('Not Empty, All Text Input is Filled.');
+                    }
+
+                    if(splitController.text == '')
+                      {
+                        Fluttertoast.showToast(msg: "First field may not be empty!",
+                            gravity: ToastGravity.CENTER);
+                        return null;
+                      } else {
+                      // Put your code here, which you want to execute when Text Field is NOT Empty.
+                      print('Not Empty, All Text Input is Filled.');
+                    }
                     if (exerciseController.text == '' ||
                         weightController.text == ''
                         || setsController.text == '' ||
                         repsController.text == '') {
                       // Put your code here which you want to execute when Text Field is Empty.
-                      Fluttertoast.showToast(msg: "Enter exercise details!",
-                          gravity: ToastGravity.BOTTOM);
+                      Fluttertoast.showToast(msg: "Enter all exercise details!",
+                          gravity: ToastGravity.CENTER);
                       return null;
                     } else {
                       // Put your code here, which you want to execute when Text Field is NOT Empty.

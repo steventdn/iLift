@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:progressive_overload2/Screens/login_page.dart';
-import 'package:progressive_overload2/views/logged_in_view.dart';
+import 'package:progressive_overload2/views/home_view.dart';
 import 'package:progressive_overload2/views/workout_view.dart';
 import 'package:progressive_overload2/models/user_model.dart';
 
@@ -38,7 +38,7 @@ class _ProgressPageState extends State<ProgressPage> {
 
   int currentIndex = 0;
   final screens = [
-    LoggedInView(),
+    HomeView(),
     WorkoutPage(),
     ProgressPage(),
   ];
@@ -67,7 +67,8 @@ class _ProgressPageState extends State<ProgressPage> {
                       });
                       setState(() {
                         if(workoutList.isEmpty){
-                          Fluttertoast.showToast(msg: "No exercises saved!");
+                          Fluttertoast.showToast(msg: "No workout history saved!",
+                          gravity: ToastGravity.CENTER);
                         }
                       });
                     }).catchError((error) {

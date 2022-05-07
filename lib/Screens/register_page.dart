@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:progressive_overload2/home_widget.dart';
-import 'package:progressive_overload2/views/logged_in_view.dart';
+import 'package:progressive_overload2/views/home_view.dart';
 
 import '../models/user_model.dart';
 
@@ -148,7 +148,7 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
     );
 
-    //confirm pass field
+    //confirm password field
     final confirmPasswordField = TextFormField(
       autofocus: false,
       controller: confirmPasswordEditingController,
@@ -247,6 +247,7 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
+  //signup function
   void signUp(String email, String password) async
   {
     if(_formKey.currentState!.validate()) {

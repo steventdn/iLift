@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:progressive_overload2/views/addsplit_view.dart';
-import 'package:progressive_overload2/views/logged_in_view.dart';
+import 'package:progressive_overload2/views/home_view.dart';
 import 'package:progressive_overload2/views/progress_view.dart';
 import 'package:progressive_overload2/views/workout_view.dart';
 
@@ -16,7 +15,7 @@ class _HomeWidgetState extends State<HomeWidget> {
 
   int currentIndex = 0;
   final screens = [
-    LoggedInView(),
+    HomeView(),
     WorkoutPage(),
     ProgressPage(),
   ];

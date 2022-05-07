@@ -1,10 +1,9 @@
   import 'package:firebase_auth/firebase_auth.dart';
   import 'package:flutter/material.dart';
   import 'package:fluttertoast/fluttertoast.dart';
-import 'package:progressive_overload2/home_widget.dart';
-  import 'package:progressive_overload2/views/logged_in_view.dart';
+  import 'package:progressive_overload2/home_widget.dart';
   import 'package:progressive_overload2/Screens/register_page.dart';
-  import 'package:progressive_overload2/views/workout_view.dart';
+
 
 
   class LoginScreenPage extends StatefulWidget {
@@ -27,6 +26,7 @@ import 'package:progressive_overload2/home_widget.dart';
 
     @override
     Widget build(BuildContext context) {
+
       //email field
       final emailField = TextFormField(
         autofocus: false,
@@ -85,6 +85,7 @@ import 'package:progressive_overload2/home_widget.dart';
         ),
       );
 
+      //login buttongit ini
       final loginButton = Material(
         elevation: 5,
         borderRadius: BorderRadius.circular(30),
