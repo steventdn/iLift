@@ -102,10 +102,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
                         // Put your code here, which you want to execute when Text Field is NOT Empty.
                         print('Not Empty, All Text Input is Filled.');
                       }
-                      // ExerciseModel splitModel = ExerciseModel();
-                      //
-                      // splitModel.name = splitController.text;
-                      // var list = [splitController.text];
+
                       start++;
                       final now = DateTime.now();
                       time = DateFormat('MM-dd-yyyy').format(now);
@@ -189,22 +186,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
                   ),
                   ),
                 ),
-                //Initialize Array
-                // ElevatedButton(onPressed: () async {
-                //
-                //   ExerciseModel splitModel = ExerciseModel();
-                //
-                //   splitModel.name = splitController.text;
-                //   splitModel.exercise = exerciseController.text;
-                //   splitModel.weight = weightController.text;
-                //   splitModel.sets = setsController.text;
-                //   splitModel.reps = repsController.text;
-                //   var list = [splitController.text];
-                //
-                //   FirebaseFirestore.instance.collection("users").doc(user?.uid).collection("splits")
-                //       .doc(user?.uid).set({"workout" : FieldValue.arrayUnion(list)});
-                // }, child: Text("First"),
-                // ),
+
                 //Save workout
                 ElevatedButton(
                   onPressed: () async {
@@ -240,57 +222,6 @@ class _WorkoutPageState extends State<WorkoutPage> {
                       print('Not Empty, All Text Input is Filled.');
                     }
 
-                    //Save Split
-                    ExerciseModel splitModel = ExerciseModel();
-
-                    splitModel.exercise = exerciseController.text;
-                    splitModel.weight = weightController.text;
-                    splitModel.sets = setsController.text;
-                    splitModel.reps = repsController.text;
-
-                    // FirebaseFirestore.instance
-                    //     .collection("users")
-                    //     .doc(user?.uid)
-                    //     .collection("splits")
-                    //     .doc()
-                    //     .set(splitModel.toMap());
-
-                    // FirebaseFirestore.instance.collection("users").doc(user!.uid).collection("splits").add(
-                    //     {
-                    //       "split" : splitController.text,
-                    //     });
-
-
-                    // var list = [splitModel.toMap()];
-
-                    // FirebaseFirestore.instance.collection("users").doc(user?.uid).collection("splits")
-                    // .doc(user?.uid).update({"workout" : FieldValue.arrayUnion(list)});
-
-                    //Update Array
-                    // FirebaseFirestore.instance.collection("users")
-                    //     .doc(user?.uid).collection("splits").doc(user?.uid).
-                    // update({"workout": FieldValue.arrayUnion(list)});
-
-                    // workoutRef.update({"workout": FieldValue.arrayUnion([list]),
-                    // });
-                    // DocumentReference workoutRef = FirebaseFirestore.instance.collection("users")
-                    // .doc(user?.uid).collection("splits").doc(user?.uid);
-
-                    // workoutRef.set({"workout": FieldValue.arrayUnion(list)});
-
-                   /* FirebaseFirestore.instance.collection("users").doc(user?.uid)
-                   .collection("test").doc(user?.uid).set({"data" : FieldValue.arrayUnion(list)});*/
-
-                    // FirebaseFirestore.instance.collection("users").doc(user!.uid).collection("splits").add(
-                    //     {
-                    //       "split" : splitController.text,
-                    //     });
-                    var list = ["\n" + exerciseController.text
-                        + " - " + weightController.text
-                        + " lbs (" + setsController.text
-                        + " sets of " + repsController.text
-                        + " reps)\n"];
-
                     FirebaseFirestore.instance.collection("users").doc(user!.uid).collection("exercises").add(
                         {
                           "exercise" : exerciseController.text
@@ -301,26 +232,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
                           "timestamp": FieldValue.serverTimestamp()
                         }
                     );
-                    //Print Splits
-                    // splitList = [];
-                    // FirebaseFirestore.instance.collection("users").doc(user!.uid).collection("splits").get()
-                    //     .then((querySnapshot) {
-                    //   print(querySnapshot);
-                    //   querySnapshot.docs.forEach((element) {
-                    //     //print(element);
-                    //     print(element.data());
-                    //     //print(element.data()['workout']);
-                    //     splitList.add(element.data()['name']);
-                    //   });
-                    //   setState(() {
-                    //     if(splitList.isEmpty){
-                    //       Fluttertoast.showToast(msg: "No names saved!");
-                    //     }
-                    //   });
-                    // }).catchError((error) {
-                    //   print("Failed to load all the names.");
-                    //   print(error);
-                    // });
+
                     clearText();
                     Fluttertoast.showToast(msg: "Exercise Saved!",
                         gravity: ToastGravity.CENTER);
@@ -328,48 +240,6 @@ class _WorkoutPageState extends State<WorkoutPage> {
                         gravity: ToastGravity.BOTTOM);
                   }, child: Text("Save")
                 ),
-                // ElevatedButton(onPressed: () {
-                //   if (exerciseController.text != '' ||
-                //       weightController.text != ''
-                //       || setsController.text != '' ||
-                //       repsController.text != '') {
-                //     // Put your code here which you want to execute when Text Field is Empty.
-                //     Fluttertoast.showToast(msg: "Save exercise before!",
-                //         gravity: ToastGravity.BOTTOM);
-                //     return null;
-                //   } else {
-                //     // Put your code here, which you want to execute when Text Field is NOT Empty.
-                //     print('Not Empty, All Text Input is Filled.');
-                //   }
-                //   splitController.clear();
-                //   Navigator.push(
-                //     context,
-                //     MaterialPageRoute(builder: (context) => HomeWidget()),
-                //   );
-                // },
-                //
-                //   child: Text("Done")
-                // )
-
-                // ElevatedButton(onPressed: () async {
-                //   FirebaseFirestore.instance.collection("users")
-                //       .doc(user?.uid).collection("saved").doc().setData()
-                // },
-                //   child: Text("Done"),
-                // ),
-                // Expanded(
-                //   child: ListView.builder(
-                //       padding: const EdgeInsets.all(8),
-                //       itemCount: splitList.length,
-                //       itemBuilder: (BuildContext context, int index) {
-                //         return Container(
-                //           height: 50,
-                //           color: Colors.amber[500],
-                //           child: Center(child: Text('${splitList[index]}')),
-                //         );
-                //       }
-                //   ),
-                // ),
 
               ],
       ),

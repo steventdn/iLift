@@ -64,25 +64,6 @@ class _HomeViewState extends State<HomeView> {
               logout(context);
             }
             ),
-            // ElevatedButton(
-            //
-            //     child: const Text(
-            //       'Start',
-            //       style: TextStyle(fontSize: 20),
-            //
-            //     ),
-            //     onPressed: () {
-            //       Navigator.push(
-            //         context,
-            //         MaterialPageRoute(builder: (context) => HomeViewPage()),
-            //       );
-            //     },
-            //     style: ElevatedButton.styleFrom(
-            //       padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-            //       shape: new RoundedRectangleBorder(
-            //         borderRadius: new BorderRadius.circular(30.0),
-            //       ),),
-            //     ),
           ],
         )
       ),
